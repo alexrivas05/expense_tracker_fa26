@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'package:expense_tracker_fa26/expenses.dart';
+import 'package:expense_tracker_fa26/widgets/expenses.dart';
 
 void main() {
   runApp(
