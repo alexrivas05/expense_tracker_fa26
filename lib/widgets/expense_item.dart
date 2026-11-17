@@ -1,31 +1,56 @@
+import 'package:expense_tracker_fa26/widgets/expenses_list.dart';
 import 'package:expense_tracker_fa26/models/expense.dart';
 import 'package:flutter/material.dart';
 
-class ExpenseItem extends StatelessWidget {
-  const ExpenseItem({super.key, required this.expense});
-  final Expense expense;
+class Expenses extends StatefulWidget {
+  const Expenses({super.key});
+
+  @override
+  State<Expenses> createState() {
+    return _ExpensesState();
+  }
+}
+
+class _ExpensesState extends State<Expenses> {
+  void _openAddExpenseOverlay() {
+    showModalBottomSheet(context: context, builder: (ctx) => Text("My Modal"));
+  }
+
+  final List<Expense> _registeredExpenses = [
+    Expense(
+      title: "Cheeseburger",
+      amount: 11.99,
+      date: DateTime.now(),
+      category: Category.food,
+    ),
+    Expense(
+      title: "Fries",
+      amount: 4.50,
+      date: DateTime.now(),
+      category: Category.food,
+    ),
+    Expense(
+      title: "Movie Ticket",
+      amount: 12.00,
+      date: DateTime.now(),
+      category: Category.leisure,
+    ),
+  ];
+
   @override
   Widget build(BuildContext context) {
-    return Card(
-      child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 16),
-        child: Column(
-          children: [
-            Text(expense.title),
-              Row(children: [
-              const SizedBox(height:4),
-              Text('\$${expense.amount.toStringAsFixed(2)}'),
-              const Spacer(),
-              Row(
-                children: [
-                  const Icon(Icons.alarm),
-                  const SizedBox(width:8),
-                  Text(expense.date.toString())
-                ],
-              )
-            ],)
-          ],
-        ),
+    return Scaffold(
+      appBar: AppBar(
+        title: Text("Expense Tracker"),
+        actions: [
+          IconButton(icon: Icon(Icons.add), onPressed: _openAddExpenseOverlay),
+        ],
+      ),
+      body: Column(
+        children: [
+          Text("Chart Here..."),
+          Expanded(child: ExpensesList(expenses: _registeredExpenses)),
+        ],
       ),
     );
   }
