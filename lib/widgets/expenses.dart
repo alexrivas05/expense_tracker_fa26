@@ -47,8 +47,7 @@ class _ExpensesState extends State<Expenses> {
         actions: [
         IconButton(
           icon: Icon(Icons.add), 
-          onPressed: () {}
-          )
+          onPressed: _openAddExpenseOverlay)
           ],
           ),
       body: Column(
